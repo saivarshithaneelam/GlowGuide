@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GlowGuide - Login</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/login.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="{% static 'main/images/glowguide-image.jpeg' %}" alt="GlowGuide Logo">
+            <h1>GlowGuide</h1>
+        </div>
+        <div class="login-box">
+            <h2>Login</h2>
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="textbox">
+                    <input type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="textbox">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            {% if error_message %}
+                <p class="error-message">{{ error_message }}</p>
+            {% endif %}
+            <p>Don't have an account? <a href="{% url 'signup' %}">Register here.</a></p>
+        </div>
+    </div>
+</body>
+</html>
